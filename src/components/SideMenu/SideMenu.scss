@@ -1,0 +1,108 @@
+@import "../../styles/utils";
+
+.SideMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+
+  display: flex;
+  transform: translateX(-100%);
+  @include transition;
+
+  @include onTablet {
+    display: none;
+  }
+
+  &__body {
+    overflow: hidden;
+
+    @include onTablet {
+      overflow: visible;
+    }
+  }
+
+  &__bg {
+    flex-shrink: 0;
+    width: 0;
+    height: 100%;
+    background-color: $black-color;
+    opacity: 0;
+    @include transition;
+  }
+
+  &__wrapper {
+    flex-shrink: 0;
+    width: 200px;
+    height: 100%;
+    padding-top: $header-height;
+    background-color: $white-color;
+    border-right: 1px solid $gray-elements-color;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 16px 0;
+  }
+
+  &__menu {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    list-style: none;
+
+    @include onTablet {
+      gap: 64px;
+      flex-direction: row;
+    }
+
+    &-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px;
+
+      font-weight: 700;
+      font-size: 12px;
+      line-height: 11px;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      text-transform: uppercase;
+      color: $gray-secondary-color;
+      @include transition;
+
+      &--active {
+        color: $gray-color;
+        background-color: $gray-white;
+      }
+
+      &:hover:not(&--active) {
+        color: $gray-color;
+        background-color: $gray-bg-color;
+      }
+    }
+  }
+
+  &__hr {
+    width: 100%;
+    padding: 0 16px;
+    margin-bottom: 16px;
+  }
+
+  &--active {
+    transform: translateX(0%);
+
+    .SideMenu__bg {
+      width: 2000px;
+      opacity: 0.5;
+    }
+  }
+}
